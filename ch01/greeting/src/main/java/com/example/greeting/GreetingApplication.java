@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @RestController
-@RequestMapping(value = "hello")
+@RequestMapping("hello")
 public class GreetingApplication {
 
     public static void main(String[] args) {
@@ -14,28 +14,17 @@ public class GreetingApplication {
     }
 
     @GetMapping(value = "/{firstName}")
-    public HelloResponse helloGet(@PathVariable("firstName") String firstName,
-                                  @RequestParam("lastName") String lastName) {
-        return new HelloResponse(String.format("Hello %s %s}", firstName, lastName));
+    public String helloGet(@PathVariable("firstName") String firstName,
+                           @RequestParam("lastName") String lastName) {
+        return String.format("{\"message\":\"Hello %s %s\"}", firstName, lastName);
     }
 
-}
-
-class HelloResponse {
-    private String message;
-
-    public HelloResponse(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    @PostMapping
+    public String helloPost(@RequestBody HelloRequest request) {
+        return String.format("{\"message\":\"Hello %s %s\"}", request.getFirstName(), request.getLastName());
     }
 }
+
 
 class HelloRequest {
     private String firstName;
