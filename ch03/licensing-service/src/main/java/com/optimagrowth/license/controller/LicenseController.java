@@ -32,5 +32,18 @@ public class LicenseController {
     }
 
 
+    @PostMapping
+    public ResponseEntity<String> createLicense(
+            @PathVariable("organizationId") String organizationId,
+            @RequestBody License license) {
+        return ResponseEntity.ok(licenseService.createLicense(license, organizationId));
+    }
+
+    @DeleteMapping("/{licenseId}")
+    public ResponseEntity<String> deleteLicense(
+            @PathVariable("organizationId") String organizationId,
+            @PathVariable("licenseId") String licenseId) {
+        return ResponseEntity.ok(licenseService.deleteLicense(licenseId, organizationId));
+    }
 
 }
