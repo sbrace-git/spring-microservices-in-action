@@ -5,6 +5,8 @@ import com.optimagrowth.license.service.LicenseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Locale;
+
 @RestController
 @RequestMapping("v1/organization/{organizationId}/license")
 public class LicenseController {
@@ -35,8 +37,9 @@ public class LicenseController {
     @PostMapping
     public ResponseEntity<String> createLicense(
             @PathVariable("organizationId") String organizationId,
-            @RequestBody License license) {
-        return ResponseEntity.ok(licenseService.createLicense(license, organizationId));
+            @RequestBody License license,
+            @RequestHeader(value = "Accept-Language", required = false) Locale locale) {
+        return ResponseEntity.ok(licenseService.createLicense(license, organizationId, locale));
     }
 
     @DeleteMapping("/{licenseId}")
