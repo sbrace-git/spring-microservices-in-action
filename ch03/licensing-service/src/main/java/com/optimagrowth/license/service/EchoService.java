@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 public class EchoService {
 
     public Echo echo(String message) {
-        Echo echo = new Echo();
-        echo.setMessage(message);
-        return echo;
+        return new Echo().setMessage(message);
     }
 }
