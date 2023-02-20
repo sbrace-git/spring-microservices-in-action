@@ -7,6 +7,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 @SpringBootApplication
@@ -19,7 +20,7 @@ public class LicensingServiceApplication {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
-        sessionLocaleResolver.setDefaultLocale(Locale.US);
+        sessionLocaleResolver.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
         return sessionLocaleResolver;
     }
 
@@ -28,6 +29,7 @@ public class LicensingServiceApplication {
         ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
         resourceBundleMessageSource.setUseCodeAsDefaultMessage(true);
         resourceBundleMessageSource.setBasename("messages");
+        resourceBundleMessageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
         return resourceBundleMessageSource;
     }
 
