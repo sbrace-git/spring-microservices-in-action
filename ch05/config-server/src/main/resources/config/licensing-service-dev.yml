@@ -7,7 +7,7 @@
 #jpa.hibernate.ddl-auto=create
 
 example:
-  property: I AM DEV
+  property: I AM DEV11111
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ostock_dev
