@@ -47,11 +47,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <name>${docker.image.prefix}/${project.artifactId}:latest</name>
-                    </image>
-                </configuration>
+<!--                <configuration>-->
+<!--                    <image>-->
+<!--                        <name>${docker.image.prefix}/${project.artifactId}:latest</name>-->
+<!--                    </image>-->
+<!--                </configuration>-->
             </plugin>
             <!--            <plugin>-->
             <!--                <groupId>com.spotify</groupId>-->
