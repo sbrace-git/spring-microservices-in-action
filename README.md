@@ -10,3 +10,6 @@ ISBN: 9787115587480
 - Docker Desktop 4.16.3
 - Docker 20.10.22
 - Docker Compose 2.15.1
+- PostgreSQL 15.2
+
+
