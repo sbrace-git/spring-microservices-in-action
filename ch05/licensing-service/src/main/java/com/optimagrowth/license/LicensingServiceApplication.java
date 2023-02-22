@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 @SpringBootApplication
-@RefreshScope
+//@RefreshScope
 public class LicensingServiceApplication {
 
     public static void main(String[] args) {
