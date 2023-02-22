@@ -5,8 +5,6 @@ import com.optimagrowth.license.service.LicenseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Locale;
-
 @RestController
 @RequestMapping("v1/organization/{organizationId}/license")
 public class LicenseController {
@@ -27,26 +25,19 @@ public class LicenseController {
     }
 
     @PutMapping
-    public ResponseEntity<License> updateLicense(
-            @PathVariable("organizationId") String organizationId,
-            @RequestBody License license) {
+    public ResponseEntity<License> updateLicense(@RequestBody License license) {
         return ResponseEntity.ok(licenseService.updateLicense(license));
     }
 
 
     @PostMapping
-    public ResponseEntity<License> createLicense(
-            @PathVariable("organizationId") String organizationId,
-            @RequestBody License license) {
-        license.setOrganizationId(organizationId);
+    public ResponseEntity<License> createLicense(@RequestBody License license) {
         return ResponseEntity.ok(licenseService.createLicense(license));
     }
 
     @DeleteMapping("/{licenseId}")
-    public ResponseEntity<String> deleteLicense(
-            @PathVariable("organizationId") String organizationId,
-            @PathVariable("licenseId") String licenseId) {
-        return ResponseEntity.ok(licenseService.deleteLicense(licenseId, organizationId));
+    public ResponseEntity<String> deleteLicense(@PathVariable("licenseId") String licenseId) {
+        return ResponseEntity.ok(licenseService.deleteLicense(licenseId));
     }
 
 }

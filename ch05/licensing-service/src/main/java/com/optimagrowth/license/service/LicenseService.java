@@ -46,7 +46,7 @@ public class LicenseService {
         return license.setComment(serviceConfig.getProperty());
     }
 
-    public String deleteLicense(String licenseId, String organizationId) {
+    public String deleteLicense(String licenseId) {
         License license = new License().setLicenseId(licenseId);
         licenseRepository.delete(license);
         return String.format(
