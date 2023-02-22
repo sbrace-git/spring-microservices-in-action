@@ -1,0 +1,25 @@
+#example.property=I AM DEV
+#
+#spring.datasource.url=jdbc:postgresql://localhost:5432/ostock_dev
+#spring.datasource.username=postgres
+#spring.datasource.password=1111
+#
+#jpa.hibernate.ddl-auto=create
+
+example:
+  property: I AM DEV
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ostock_dev
+    username: postgres
+    password: 1111
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
