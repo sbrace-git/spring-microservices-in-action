@@ -50,6 +50,6 @@ public class LicenseService {
         License license = new License().setLicenseId(licenseId);
         licenseRepository.delete(license);
         return String.format(
-                messageSource.getMessage("license.delete.message", null, null), licenseId);
+                messageSource.getMessage("license.delete.message", null, Locale.getDefault()), licenseId);
     }
 }
