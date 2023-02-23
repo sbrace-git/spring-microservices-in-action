@@ -2,11 +2,14 @@ spring:
   application:
     name: config-server
   profiles:
-    active: native
+    active: native,git
   cloud:
     config:
       server:
         native:
           search-locations: classpath:/config
+        git:
+          uri: https://gitee.com/sbrace/spring-microservices-in-action-config-repo.git
+          search-paths: licensing-service
 server:
   port: 8071
