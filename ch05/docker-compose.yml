@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
   database:
     image: postgres:latest
@@ -27,16 +27,13 @@ services:
           - "config-server"
   licensingservice:
     image: licensing-service:latest
-    environment:
-      PROFILE: "dev"
-      CONFIGSERVER_URI: "http://config-server:8071"
-      CONFIGSERVER_PORT:   "8071"
-      DATABASESERVER_PORT: "5432"
     depends_on:
       database:
         condition: service_healthy
       configserver:
         condition: service_started
+    environment:
+      - "spring.profiles.active=dev"
     ports:
       - "8080:8080"
     networks:
