@@ -10,7 +10,7 @@ example:
   property: I AM DEV
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ostock_dev
+    url: jdbc:postgresql://database:5432/ostock_dev
     username: postgres
     password: 1111
   jpa:
