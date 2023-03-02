@@ -4,7 +4,18 @@ spring:
   cloud:
     config:
       uri: http://localhost:8071
-
+server:
+  port: 8070
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 5
 management:
   endpoints:
     web:
