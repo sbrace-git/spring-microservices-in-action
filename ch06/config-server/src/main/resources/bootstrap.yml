@@ -10,7 +10,9 @@ spring:
           search-locations: classpath:/config
         git:
           uri: https://gitee.com/sbrace/spring-microservices-in-action-config-repo.git
-          search-paths: licensing-service
+          search-paths:
+            - licensing-service
+            - eureka-server
 server:
   port: 8071
 encrypt:
