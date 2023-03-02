@@ -1,0 +1,17 @@
+example:
+  property: I AM DEFAULT
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ostock_dev
+    username: postgres
+    password: '{cipher}4522a236bcaee7ddc6b38fb723bd4e2ea4713b1bdf7faddfcb0c8eee2b6d7be7'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
