@@ -16,11 +16,12 @@ public class LicenseController {
         this.licenseService = licenseService;
     }
 
-    @GetMapping("/{licenseId}")
+    @GetMapping("/{licenseId}/{clientType}")
     public ResponseEntity<License> getLicense(
             @PathVariable("organizationId") String organizationId,
-            @PathVariable("licenseId") String licenseId) {
-        License license = licenseService.getLicense(licenseId, organizationId);
+            @PathVariable("licenseId") String licenseId,
+            @PathVariable("clientType") String clientType) {
+        License license = licenseService.getLicense(licenseId, organizationId, clientType);
         return ResponseEntity.ok(license);
     }
 
