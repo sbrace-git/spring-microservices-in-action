@@ -7,13 +7,14 @@ import com.optimagrowth.license.repository.LicenseRepository;
 import com.optimagrowth.license.service.client.OrganizationDiscoveryClient;
 import com.optimagrowth.license.service.client.OrganizationFeignClient;
 import com.optimagrowth.license.service.client.OrganizationRestTemplateClient;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.util.Locale;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class LicenseService {
 
@@ -21,36 +22,33 @@ public class LicenseService {
     private final LicenseRepository licenseRepository;
     private final ServiceConfig serviceConfig;
 
+    private final OrganizationFeignClient organizationFeignClient;
+    private final OrganizationRestTemplateClient organizationRestClient;
+    private final OrganizationDiscoveryClient organizationDiscoveryClient;
 
-    public LicenseService(MessageSource messageSource, LicenseRepository licenseRepository, ServiceConfig serviceConfig) {
+    public LicenseService(MessageSource messageSource, LicenseRepository licenseRepository, ServiceConfig serviceConfig, OrganizationFeignClient organizationFeignClient, OrganizationRestTemplateClient organizationRestClient, OrganizationDiscoveryClient organizationDiscoveryClient) {
         this.messageSource = messageSource;
         this.licenseRepository = licenseRepository;
         this.serviceConfig = serviceConfig;
+        this.organizationFeignClient = organizationFeignClient;
+        this.organizationRestClient = organizationRestClient;
+        this.organizationDiscoveryClient = organizationDiscoveryClient;
     }
-
-    @Autowired
-    private OrganizationFeignClient organizationFeignClient;
-
-    @Autowired
-    private OrganizationRestTemplateClient organizationRestClient;
-
-    @Autowired
-    private OrganizationDiscoveryClient organizationDiscoveryClient;
 
     private Organization retrieveOrganizationInfo(String organizationId, String clientType) {
         Organization organization = null;
 
         switch (clientType) {
             case "feign":
-                System.out.println("I am using the feign client");
+                log.info("retrieveOrganizationInfo - I am using the feign client");
                 organization = organizationFeignClient.getOrganization(organizationId);
                 break;
             case "rest":
-                System.out.println("I am using the rest client");
+                log.info("retrieveOrganizationInfo - I am using the rest client");
                 organization = organizationRestClient.getOrganization(organizationId);
                 break;
             case "discovery":
-                System.out.println("I am using the discovery client");
+                log.info("retrieveOrganizationInfo - I am using the discovery client");
                 organization = organizationDiscoveryClient.getOrganization(organizationId);
                 break;
             default:
