@@ -12,7 +12,7 @@ management:
     web:
       base-path: /actuator
       exposure:
-        include: health,info,env,refresh
+        include: health,info,env,refresh,beans
     enabled-by-default: false
   endpoint:
     health:
@@ -23,4 +23,6 @@ management:
     refresh:
       enabled: true
     env:
+      enabled: true
+    beans:
       enabled: true

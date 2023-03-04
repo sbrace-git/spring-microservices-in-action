@@ -2,6 +2,7 @@ package com.optimagrowth.license.service.client;
 
 import com.optimagrowth.license.model.Organization;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpMethod;
@@ -17,12 +18,15 @@ public class OrganizationDiscoveryClient {
 
     private final DiscoveryClient discoveryClient;
 
-    public OrganizationDiscoveryClient(DiscoveryClient discoveryClient) {
+    private final RestTemplate restTemplate;
+
+    public OrganizationDiscoveryClient(DiscoveryClient discoveryClient,@Qualifier("restTemplateWithOutLoadBalanced") RestTemplate restTemplate) {
         this.discoveryClient = discoveryClient;
+        this.restTemplate = restTemplate;
     }
 
     public Organization getOrganization(String organizationId) {
-        RestTemplate restTemplate = new RestTemplate();
+//        RestTemplate restTemplate = new RestTemplate();
         List<ServiceInstance> instances = discoveryClient.getInstances("organization-service");
 
 //        log.info("OrganizationDiscoveryClient instances = {}", instances);
