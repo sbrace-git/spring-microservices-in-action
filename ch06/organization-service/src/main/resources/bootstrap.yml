@@ -3,6 +3,6 @@ spring:
     name: organization-service
   cloud:
     config:
-      uri: http://localhost:8071
+      uri: http://config-server:8071
 server:
   port: 8081

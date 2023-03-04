@@ -25,6 +25,17 @@ services:
       backend:
         aliases:
           - "config-server"
+  eurekaserver:
+    image: eureka-server:latest
+    depends_on:
+      configserver:
+          condition: service_started
+    ports:
+      - "8070:8070"
+    networks:
+      backend:
+        aliases:
+          - "eureka-server"
   licensingservice:
     image: licensing-service:latest
     depends_on:
@@ -32,10 +43,25 @@ services:
         condition: service_healthy
       configserver:
         condition: service_started
+      eurekaserver:
+        condition: service_started
     environment:
       - "spring.profiles.active=dev"
     ports:
       - "8080:8080"
+    networks:
+      - backend
+  organizationservice:
+    image: organization-service:latest
+    depends_on:
+      database:
+        condition: service_healthy
+      configserver:
+        condition: service_started
+      eurekaserver:
+        condition: service_started
+    ports:
+      - "8081:8081"
     networks:
       - backend
 
